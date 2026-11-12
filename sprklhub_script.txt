@@ -1,0 +1,125 @@
+--[[
+    Project: SprklHub (Rebranded from XenHub)
+    Features:
+    - Rebranded UI texts to SprklHub
+    - Bottom image updated to rbxassetid://111889328410665
+    - AP/Admin Panel completely removed
+    - Settings UI removed; useful configurations (e.g., Min Auto TP Gen) integrated into small panels
+]]
+
+local SprklHub = {}
+SprklHub.Version = "2.0.0"
+
+-- Services
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local CoreGui = game:GetService("CoreGui")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+
+-- Main GUI Container
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "SprklHubGui"
+ScreenGui.ResetOnSpawn = false
+if syn and syn.protect_gui then
+    syn.protect_gui(ScreenGui)
+    ScreenGui.Parent = CoreGui
+else
+    ScreenGui.Parent = CoreGui
+end
+
+-- Main Frame
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 500, 0, 350)
+MainFrame.Position = UDim2.new(0.5, -250, 0.5, -175)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+MainFrame.BorderSizePixel = 0
+MainFrame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 8)
+UICorner.Parent = MainFrame
+
+-- Top Bar / Title
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Size = UDim2.new(1, 0, 0, 40)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.Text = "SprklHub - Main Panel"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.TextSize = 18
+TitleLabel.Parent = MainFrame
+
+-- Small Panel with Integrated Settings (e.g., Min Auto TP Gen)
+local SmallPanel = Instance.new("Frame")
+SmallPanel.Name = "SmallPanel"
+SmallPanel.Size = UDim2.new(0, 460, 0, 200)
+SmallPanel.Position = UDim2.new(0, 20, 0, 50)
+SmallPanel.BackgroundColor3 = Color3.fromRGB(35, 35, 42)
+SmallPanel.BorderSizePixel = 0
+SmallPanel.Parent = MainFrame
+
+local PanelCorner = Instance.new("UICorner")
+PanelCorner.CornerRadius = UDim.new(0, 6)
+PanelCorner.Parent = SmallPanel
+
+local PanelTitle = Instance.new("TextLabel")
+PanelTitle.Size = UDim2.new(1, 0, 0, 30)
+PanelTitle.BackgroundTransparency = 1
+PanelTitle.Font = Enum.Font.GothamMedium
+PanelTitle.Text = "Auto TP Generator Settings"
+PanelTitle.TextColor3 = Color3.fromRGB(200, 200, 200)
+PanelTitle.TextSize = 14
+PanelTitle.Parent = SmallPanel
+
+-- Min Auto TP Gen Input / Slider Simulation
+local SettingLabel = Instance.new("TextLabel")
+SettingLabel.Size = UDim2.new(0, 250, 0, 30)
+SettingLabel.Position = UDim2.new(0, 15, 0, 45)
+SettingLabel.BackgroundTransparency = 1
+SettingLabel.Font = Enum.Font.Gotham
+SettingLabel.Text = "Min Auto TP Gen Delay (s):"
+SettingLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+SettingLabel.TextSize = 13
+SettingLabel.TextXAlignment = Enum.TextXAlignment.Left
+SettingLabel.Parent = SmallPanel
+
+local SettingTextBox = Instance.new("TextBox")
+SettingTextBox.Size = UDim2.new(0, 100, 0, 25)
+SettingTextBox.Position = UDim2.new(0, 340, 0, 48)
+SettingTextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 55)
+SettingTextBox.BorderSizePixel = 0
+SettingTextBox.Font = Enum.Font.Gotham
+SettingTextBox.Text = "0.5"
+SettingTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+SettingTextBox.TextSize = 13
+SettingTextBox.Parent = SmallPanel
+
+local BoxCorner = Instance.new("UICorner")
+BoxCorner.CornerRadius = UDim.new(0, 4)
+BoxCorner.Parent = SettingTextBox
+
+-- Bottom Image Icon (Requested Asset ID: 111889328410665)
+local BottomImage = Instance.new("ImageLabel")
+BottomImage.Name = "BottomBrandingImage"
+BottomImage.Size = UDim2.new(0, 30, 0, 30)
+BottomImage.Position = UDim2.new(0, 20, 1, -38)
+BottomImage.BackgroundTransparency = 1
+BottomImage.Image = "rbxassetid://111889328410665"
+BottomImage.Parent = MainFrame
+
+local BottomLabel = Instance.new("TextLabel")
+BottomLabel.Size = UDim2.new(0, 200, 0, 30)
+BottomLabel.Position = UDim2.new(0, 60, 1, -38)
+BottomLabel.BackgroundTransparency = 1
+BottomLabel.Font = Enum.Font.Gotham
+BottomLabel.Text = "Powered by SprklHub"
+BottomLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
+BottomLabel.TextSize = 12
+BottomLabel.TextXAlignment = Enum.TextXAlignment.Left
+BottomLabel.Parent = MainFrame
+
+print("SprklHub successfully loaded with custom asset and integrated panel settings.")
+return SprklHub
